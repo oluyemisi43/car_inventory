@@ -20,23 +20,23 @@
 <!--Nav Items-->
 <div>
 <ul id="horizontal-list">
-<a href="">
+<a href="{{ url_for('site.home') }}">
 <li>Car Inventory</li>
 </a>
-<a href="">
+<a href="{{ url_for('site.home') }}">
 <li>Donate</li>
 </a>
-<a href="">
+<a href="{{ url_for('site.home') }}">
 <li>Profile</li>
 </a>
 <!--User Auth Check for SignIn/SignUp Nav Buttons-->
 <a href="">
 <li>Log Out</li>
 </a>
-<a href="">
+<a href="{{ url_for('site.home') }}">
 <li>Sign In</li>
 </a>
-<a href="">
+<a href="{{ url_for('auth.signup') }}">
 <li>Sign Up Free</li>
 </a>
 </ul>
