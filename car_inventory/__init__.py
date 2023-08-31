@@ -6,7 +6,11 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from .models import db as root_db
+from .models import db as root_db,login_manager, ma
+
+from flask_marshmallow import Marshmallow
+
+from flask_cors import CORS
 
 # Load env variables
 import os
@@ -23,5 +27,13 @@ app.config.from_object(Config)
 # Initialize db
 root_db.init_app(app)
 
+with app.app_context():
+    root_db.create_all()
+
 # Migrate 
 migrate = Migrate(app, root_db)
+
+login_manager.init_app(app)
+
+ma.init_app(app)
+CORS(app)

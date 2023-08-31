@@ -8,10 +8,22 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Import for Secrets Module (Given by Python)
 import secrets
+# Imports for Login Manager
+from flask_login import UserMixin
 
+# Import for Flask Login
+from flask_login import LoginManager
+
+# Import for Flask-Marshmallow
+from flask_marshmallow import Marshmallow
 db = SQLAlchemy()
+login_manager = LoginManager()
+ma = Marshmallow()
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+class User(db.Model,UserMixin):
     id = db.Column(db.String, primary_key = True)
     first_name = db.Column(db.String(150), nullable = True, default='')
     last_name = db.Column(db.String(150), nullable = True, default = '')

@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<!--Flask Flashed Messages to User-->
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages %}
+            {% for cat,msg in messages %}
+                {% if cat == 'form-failed' %}
+                    <div class="alert alert-success">
+                        {{ msg }}
+                        <button type="button" class="close" data-dismiss = "alert">&times;</button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
 <h1>Sign Up Here</h1>
 
 <main class="container">
